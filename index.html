@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="icon" href="images/bot.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div id="chat" class="chat">
+            <div id="messages" class="messages"></div>
+            <div class="input-container">
+                <input id="input" type="text" placeholder="Say something..." autocomplete="off" autofocus="true" />
+                <button id="sendButton" class="send-button">Send</button>
+            </div>
+        </div>
+        <div class="bot-avatar">
+            <img src="images/bot.png" alt="Robot cartoon" class="avatar" />
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="constants.js"></script>
+<script type="text/javascript" src="speech.js"></script>
+</html>

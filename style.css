@@ -1,0 +1,320 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Vibrant gradient background */
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: backgroundPulse 10s infinite alternate; /* Subtle background animation */
+}
+
+span {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 1s ease-in-out;
+  position: relative; /* Allow positioning of avatars */
+}
+
+/* Chat Box Styling */
+.chat {
+  height: 500px; /* Increase the height of the chat box */
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Chatbox gradient */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  animation: slideIn 0.8s ease-out, glow 2s infinite alternate; /* Added glow animation */
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  margin: 20px 0; /* Add spacing between the chatbox and avatars */
+}
+
+::-webkit-input-placeholder {
+  color: #aaa;
+}
+
+input {
+  border: 0;
+  padding: 15px;
+  margin-left: auto;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 80%;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  margin: 15px;
+  border-radius: 15px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #ff9a9e;
+  border-radius: 10px;
+}
+
+#bot {
+  margin-left: auto;
+}
+
+.bot {
+  font-family: Consolas, 'Courier New', Menlo, source-code-pro, Monaco, monospace;
+}
+
+.avatar {
+  height: 50px;
+}
+
+/* Bot Avatar Styling */
+.bot-avatar {
+  display: flex;
+  justify-content: center; /* Center the bot avatar */
+  margin: 20px 0; /* Add spacing from the bottom */
+}
+
+.bot-avatar img {
+  height: 200px; /* Increase the size of the bot image */
+  animation: botFloat 3s infinite ease-in-out, glow 2s infinite alternate; /* Floating animation */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.bot-avatar img:hover {
+  transform: scale(1.2); /* Slight zoom on hover */
+}
+
+.user-avatar {
+  display: flex;
+  justify-content: flex-end; /* Align user avatar to the right */
+  margin: 20px 20px 0 0; /* Add some spacing from the top and right */
+}
+
+.user-avatar img {
+  height: 150px;
+  animation: userHover 4s infinite ease-in-out; /* Hover-like animation */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.user-avatar img:hover {
+  transform: rotate(-5deg) scale(1.1); /* Tilt and zoom on hover */
+}
+
+.response {
+  display: flex;
+  align-items: center;
+  margin: 1%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.response:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Input container styling */
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid #ddd;
+}
+
+.send-button {
+  padding: 10px 20px;
+  background-color: #74ebd5;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #4ac29a;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundPulse {
+  from {
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  }
+  to {
+    background: linear-gradient(135deg, #acb6e5, #74ebd5);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes botRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1); /* Slight scaling for a dynamic effect */
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes userSwing {
+  0% {
+    transform: rotate(-5deg) translateX(0);
+  }
+  25% {
+    transform: rotate(5deg) translateX(5px); /* Add a slight horizontal movement */
+  }
+  50% {
+    transform: rotate(-5deg) translateX(-5px);
+  }
+  75% {
+    transform: rotate(5deg) translateX(5px);
+  }
+  100% {
+    transform: rotate(-5deg) translateX(0);
+  }
+}
+
+@keyframes botBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05); /* Slight bounce and scaling */
+  }
+}
+
+@keyframes userTilt {
+  0% {
+    transform: rotate(-5deg) translateX(0);
+  }
+  25% {
+    transform: rotate(5deg) translateX(5px); /* Add a slight horizontal movement */
+  }
+  50% {
+    transform: rotate(-5deg) translateX(-5px);
+  }
+  75% {
+    transform: rotate(5deg) translateX(5px);
+  }
+  100% {
+    transform: rotate(-5deg) translateX(0);
+  }
+}
+
+/* Bot Avatar Animation */
+@keyframes botFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1); /* Floating effect with scaling */
+  }
+}
+
+/* User Avatar Animation */
+@keyframes userHover {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(10px) rotate(5deg); /* Hover-like effect with rotation */
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 980px) {
+  .container {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .chat {
+    width: 85vw;
+    height: 400px; /* Adjust height for smaller screens */
+    margin: 10vw;
+  }
+  .bot-avatar {
+    justify-content: center; /* Center bot avatar on smaller screens */
+    margin: 10px 0;
+  }
+  .user-avatar {
+    justify-content: center; /* Center user avatar on smaller screens */
+    margin: 10px 0;
+  }
+}
